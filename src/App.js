@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 function App() {
+  const location = useLocation();
+  const shouldShowNavbar = location.pathname !== '/login';
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {shouldShowNavbar && <Navbar></Navbar>}
+      <Routes>
+        <Route path="login" element={<Login></Login>}></Route>
+        <Route path='/' element={<Homepage></Homepage>}></Route>
+        <Route path='dashboard' element={<Dashboard></Dashboard>}></Route>
+      </Routes>
+    </>
   );
 }
 

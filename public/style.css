@@ -1,0 +1,77 @@
+.meter-container {
+   /* border: 1px solid red; */
+   position: relative;
+   display: grid;
+   place-items: center;
+   overflow: hidden;
+   padding-top: 50%;
+}
+
+/* .meter-container::after {
+   content: "";
+   height: 35%;
+   display: block;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+} */
+
+.meter-container .meter {
+   width: 100%;
+   height: 100%;
+   border-radius: 100%;
+   position: absolute;
+   transition: 300ms;
+}
+
+/* Excellent: "#0099ff",
+Good: "#00cc00",
+Fair: "#ffff00",
+Poor: "#ff0000", */
+
+.meter.excellent {
+   border: 7px solid #0099ff;
+}
+.meter.good {
+   border: 7px solid #00cc00;
+}
+.meter.fair {
+   border: 7px solid #ffff00;
+}
+.meter.poor {
+   border: 7px solid #ff0000;
+}
+
+.meter-container .meter{
+   translate: 0 30%;
+}
+
+.meter-container .inbar {
+   translate: 0 37%;
+}
+
+.meter-container .inbar {
+   width: 80%;
+   height: 80%;
+   border: 10px solid #9A9A9A;
+   border-radius: 100%;
+   position: absolute;
+}
+
+.meter-container .desc {
+   text-align: center;
+}
+
+.water-flow::after {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 0;
+   height: 0;
+   top: 6px;
+   right: 100%;
+   border-top: 10px solid transparent;
+   border-bottom: 10px solid transparent;
+   border-right: 20px solid #0A6847;
+}
