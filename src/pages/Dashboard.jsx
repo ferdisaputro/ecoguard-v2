@@ -32,6 +32,7 @@ function Dashboard () {
    const [waterQuality, setWaterQuality] = useState(null);
 
    const [waveLevel, setWaveLevel] = useState(null);
+   const [realWaveLevel, setRealWaveLevel] = useState(null);
 
    const [pollutionLevel, setPollutionLevel] = useState(null);
 
@@ -68,6 +69,8 @@ function Dashboard () {
          setWaterStatus(checkWaterStatus(data.ph, data.turbidity));
 
          setPollutionLevel(checkPollutionLevel(data.ph, data.turbidity));
+
+         setRealWaveLevel(data.waveLevel)
       });
    }, []);
 
@@ -85,7 +88,7 @@ function Dashboard () {
          // pH Netral
          if (turbidity < 1) {
             category = "Rendah";
-         } else if (turbidity >= 1 && turbidity <= 5) {
+         } else if (turbidity >= 1 && turbidity <= 100) {
             category = "Sedang";
          } else {
             category = "Tinggi";
@@ -94,7 +97,7 @@ function Dashboard () {
          // pH Asam atau Basa
          if (turbidity < 1) {
             category = "Sedang";
-         } else if (turbidity >= 1 && turbidity <= 5) {
+         } else if (turbidity >= 1 && turbidity <= 100) {
             category = "Sedang";
          } else {
             category = "Tinggi";
@@ -250,7 +253,7 @@ function Dashboard () {
          <Weather ></Weather>
       </div>
       {/* {(ph && turbidity && waveLevel)? <ActionSuggestion ph={ph} turbidity={turbidity} waveLevel={waveLevel} ></ActionSuggestion> : "" } */}
-      {(ph && turbidity && waveLevel)? <ActionSuggestion data={{ ph: ph, turbidity: turbidity, waveLevel: waveLevel }} ></ActionSuggestion> : "Loading..." }
+      {(ph && turbidity && waveLevel)? <ActionSuggestion data={{ ph: ph, turbidity: turbidity, waveLevel: realWaveLevel }} ></ActionSuggestion> : "Loading..." }
    </div>
    );
 }
