@@ -26,14 +26,18 @@ function Weather() {
    useEffect(() => {
       if (!loading && locations.length > 0 && locations[0].coordinates.length === 2) {
          const coordinates = locations[0].coordinates.join(',');
-         getWeatherData(coordinates)
+         weatherDataGetter(coordinates);
+      }
+   }, [locations, loading]);
+
+   const weatherDataGetter = async (coordinates) => {
+      await getWeatherData(coordinates)
             .then(response => setWeatherData(response))
             .catch(error => {
                console.error("Error fetching weather data:", error);
                setWeatherData(null);
             });
-      }
-   }, [locations, loading]);
+   }
 
    return (
       <div className="space-y-3">
